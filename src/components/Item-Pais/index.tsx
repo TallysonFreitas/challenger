@@ -1,10 +1,22 @@
 import { secondPage } from '../../redux/pagina/action'
 import { Texto } from '../Texto'
 import { Titulo } from '../Titulo'
-import { SContainerImagem, SImagemDoPais, SItemPais } from './style'
+import {
+  SContainerImagem,
+  SContainerTexto,
+  SImagemDoPais,
+  SItemPais,
+} from './style'
 import { useDispatch } from 'react-redux'
 
-export const ItemPais = () => {
+type TItemPais = {
+  src: string
+  population: number
+  region: string
+  capital: string
+}
+
+export const ItemPais = ({ src, population, region, capital }: TItemPais) => {
   const dispatch = useDispatch()
 
   const onMapClick = () => {
@@ -14,12 +26,14 @@ export const ItemPais = () => {
   return (
     <SItemPais onClick={onMapClick}>
       <SContainerImagem>
-        <SImagemDoPais />
+        <SImagemDoPais src={src} />
       </SContainerImagem>
-      <Titulo tamanhoDaFonte={28}>Nome do pais</Titulo>
-      <Texto>Population: numero</Texto>
-      <Texto>Region: nome</Texto>
-      <Texto>Capital: nome</Texto>
+      <SContainerTexto>
+        <Titulo tamanhoDaFonte={28}>Nome do pais</Titulo>
+        <Texto>Population: {population as unknown as string}</Texto>
+        <Texto>Region: {region}</Texto>
+        <Texto>Capital: {capital}</Texto>
+      </SContainerTexto>
     </SItemPais>
   )
 }

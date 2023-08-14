@@ -6,5 +6,5 @@ export const STexto = styled.p`
 `
 
 export type TTexto = {
-  children: string
+  children: string[]
 }

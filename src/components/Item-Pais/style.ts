@@ -13,3 +13,8 @@ export const SItemPais = styled.div`
   min-height: 200px;
   background-color: #f44;
 `
+
+export const SContainerTexto = styled.div`
+  width: 100%;
+  padding: 24px;
+`
