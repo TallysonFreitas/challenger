@@ -14,9 +14,16 @@ type TItemPais = {
   population: number
   region: string
   capital: string
+  name: string
 }
 
-export const ItemPais = ({ src, population, region, capital }: TItemPais) => {
+export const ItemPais = ({
+  src,
+  population,
+  region,
+  capital,
+  name,
+}: TItemPais) => {
   const dispatch = useDispatch()
 
   const onMapClick = () => {
@@ -29,7 +36,7 @@ export const ItemPais = ({ src, population, region, capital }: TItemPais) => {
         <SImagemDoPais src={src} />
       </SContainerImagem>
       <SContainerTexto>
-        <Titulo tamanhoDaFonte={28}>Nome do pais</Titulo>
+        <Titulo tamanhoDaFonte={28}>{name}</Titulo>
         <Texto>Population: {population as unknown as string}</Texto>
         <Texto>Region: {region}</Texto>
         <Texto>Capital: {capital}</Texto>

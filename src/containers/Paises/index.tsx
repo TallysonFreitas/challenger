@@ -1,14 +1,26 @@
+import { useEffect, useState } from 'react'
 import { ItemPais } from '../../components/Item-Pais'
-import { useGetPaisesQuery } from '../../services/api'
 import { SContainerPaises } from './style'
 
 export const Paises = () => {
-  const { data: paises } = useGetPaisesQuery()
+  const [api, setApi] = useState([])
+  const [quantidadePaises, setQuantidadePaises] = useState(20)
+
+  useEffect(() => {
+    fetch('./data.json').then((resposta) => {
+      resposta.json().then((json) => {
+        setApi(json.slice(0, quantidadePaises))
+      })
+    })
+  }, [])
+
+  console.log(api)
 
   return (
     <SContainerPaises>
-      {paises?.map((pais: any) => (
+      {api.map((pais: any) => (
         <ItemPais
+          name={pais.name}
           key={pais.name}
           src={pais.flag}
           population={pais.population}
@@ -16,6 +28,13 @@ export const Paises = () => {
           capital={pais.capital}
         />
       ))}
+      <button
+        onClick={() => {
+          setQuantidadePaises(40)
+        }}
+      >
+        carregar Mais
+      </button>
     </SContainerPaises>
   )
 }
