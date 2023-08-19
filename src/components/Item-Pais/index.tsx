@@ -1,3 +1,4 @@
+import { PaisSelecionado } from '../../redux/PaisSelecionado/action'
 import { secondPage } from '../../redux/pagina/action'
 import { Texto } from '../Texto'
 import { Titulo } from '../Titulo'
@@ -30,16 +31,20 @@ export const ItemPais = ({
     dispatch(secondPage())
   }
 
+  const saveCountry = () => {
+    dispatch(PaisSelecionado([src, region, capital, name]))
+  }
+
   return (
-    <SItemPais onClick={onMapClick}>
+    <SItemPais onClick={saveCountry} onMouseUp={onMapClick}>
       <SContainerImagem>
         <SImagemDoPais src={src} />
       </SContainerImagem>
       <SContainerTexto>
         <Titulo tamanhoDaFonte={28}>{name}</Titulo>
-        <Texto>Population: {population as unknown as string}</Texto>
-        <Texto>Region: {region}</Texto>
-        <Texto>Capital: {capital}</Texto>
+        <Texto strong={'Population:'}> {population as unknown as string}</Texto>
+        <Texto strong={'Region:'}> {region ? region : 'none'}</Texto>
+        <Texto strong={'Capital:'}> {capital ? capital : 'none'}</Texto>
       </SContainerTexto>
     </SItemPais>
   )

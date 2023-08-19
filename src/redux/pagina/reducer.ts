@@ -6,6 +6,7 @@ const initialState = {
 
 export type action = {
   type: string
+  payload?: string[]
 }
 
 const paginaReducer = (state = initialState, action: action) => {

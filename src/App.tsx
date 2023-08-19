@@ -1,3 +1,4 @@
+import { PaisSelecionado } from './containers/PaisSelecionado'
 import { Paises } from './containers/Paises'
 import { EstiloGlobal } from './style'
 import { useSelector } from 'react-redux'
@@ -12,6 +13,7 @@ function App() {
     <>
       <EstiloGlobal />
       {currentPage === 'inicial' && <Paises />}
+      {currentPage === 'secundaria' && <PaisSelecionado />}
     </>
   )
 }
